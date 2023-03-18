@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import { styled, css, Typography } from "@mui/material";
 
-function App() {
+import Logic from "./useTasksLogic";
+
+import AddTaskForm from "./components/AddTaskForm";
+import TaskList from "./components/TaskList";
+
+const Container = styled("div")(
+  css`
+    width: 600px;
+    background-color: #123456;
+    padding: 20px;
+    border-radius: 5px;
+  `
+);
+
+const Title = styled(Typography)(css`
+  color: #fff;
+`);
+
+const App = () => {
+  const {
+    tasks,
+    inputValue,
+    editedValue,
+    handleEditValue,
+    handleInputChange,
+    handleSubmit,
+    deleteTask,
+    editTask,
+    updateTask,
+  } = Logic();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Title variant="h4" align="center" gutterBottom>
+        Todo List
+      </Title>
+      <AddTaskForm
+        inputValue={inputValue}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+      />
+      <TaskList
+        tasks={tasks}
+        deleteTask={deleteTask}
+        editTask={editTask}
+        editedValue={editedValue}
+        handleEditValue={handleEditValue}
+        updateTask={updateTask}
+      />
+    </Container>
   );
-}
+};
 
 export default App;
