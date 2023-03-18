@@ -10,6 +10,7 @@ const useTasksLogic = () => {
       alert("Cannot have empty tasks!");
       return;
     }
+
     setTasks([
       {
         title: task,
@@ -58,6 +59,10 @@ const useTasksLogic = () => {
 
   const handleCompleteTask = (id) => {
     const newTasks = tasks.map((task) => {
+      if (task.editing) {
+        alert("Cannot complete task while editing!");
+        return task;
+      }
       if (task.id === id) {
         return { ...task, completed: !task.completed };
       }
@@ -75,14 +80,6 @@ const useTasksLogic = () => {
     addTask(inputValue);
     setInputValue("");
   };
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
-
-  useEffect(() => {
-    console.log(editedValue);
-  }, [editedValue]);
 
   return {
     tasks,

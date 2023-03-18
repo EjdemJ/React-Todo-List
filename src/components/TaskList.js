@@ -1,23 +1,13 @@
-import { styled, css, List, ListItem, Typography, Input } from "@mui/material";
-
+import { styled, css, List, Typography, Input } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
 import { BsFillTrashFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { AiFillCheckSquare } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 
-// import { mockedTasks } from "../mocks";
+import Task from "./Task";
 
-const StyledListItem = styled(ListItem)(
-  ({ completed }) => css`
-    background-color: #f5f5f5;
-    margin: 10px 0;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: ${completed ? "line-through" : ""};
-  `
-);
+// import { mockedTasks } from "../mocks";
 
 const IconsWrapper = styled("div")(
   css`
@@ -52,44 +42,46 @@ const TaskList = ({
 }) => {
   return (
     <List>
-      {tasks.map(({ title, id, completed, editing }) => (
-        <StyledListItem key={id} completed={completed}>
-          {editing ? (
-            <EditWrapper>
-              <EditTaskInput value={editedValue} onChange={handleEditValue} />
-              <AiFillCheckSquare
+      <AnimatePresence>
+        {tasks.map(({ title, id, completed, editing }) => (
+          <Task key={id} completed={completed}>
+            {editing ? (
+              <EditWrapper>
+                <EditTaskInput value={editedValue} onChange={handleEditValue} />
+                <AiFillCheckSquare
+                  size={30}
+                  color="#123456"
+                  cursor="pointer"
+                  onClick={() => updateTask(id)}
+                />
+              </EditWrapper>
+            ) : (
+              <Typography variant="h6">{title}</Typography>
+            )}
+
+            <IconsWrapper>
+              <FaEdit
                 size={30}
                 color="#123456"
                 cursor="pointer"
-                onClick={() => updateTask(id)}
+                onClick={() => editTask(id)}
               />
-            </EditWrapper>
-          ) : (
-            <Typography variant="h6">{title}</Typography>
-          )}
-
-          <IconsWrapper>
-            <FaEdit
-              size={30}
-              color="#123456"
-              cursor="pointer"
-              onClick={() => editTask(id)}
-            />
-            <BsFillTrashFill
-              size={30}
-              color="#123456"
-              cursor="pointer"
-              onClick={() => deleteTask(id)}
-            />
-            <AiOutlineCheck
-              size={30}
-              color="#123456"
-              cursor="pointer"
-              onClick={() => handleCompleteTask(id)}
-            />
-          </IconsWrapper>
-        </StyledListItem>
-      ))}
+              <BsFillTrashFill
+                size={30}
+                color="#123456"
+                cursor="pointer"
+                onClick={() => deleteTask(id)}
+              />
+              <AiOutlineCheck
+                size={30}
+                color="#123456"
+                cursor="pointer"
+                onClick={() => handleCompleteTask(id)}
+              />
+            </IconsWrapper>
+          </Task>
+        ))}
+      </AnimatePresence>
     </List>
   );
 };
