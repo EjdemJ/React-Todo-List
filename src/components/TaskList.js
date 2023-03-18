@@ -3,6 +3,7 @@ import { styled, css, List, ListItem, Typography, Input } from "@mui/material";
 import { BsFillTrashFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { AiFillCheckSquare } from "react-icons/ai";
+import { AiOutlineCheck } from "react-icons/ai";
 
 // import { mockedTasks } from "../mocks";
 
@@ -47,6 +48,7 @@ const TaskList = ({
   editedValue,
   handleEditValue,
   updateTask,
+  handleCompleteTask,
 }) => {
   return (
     <List>
@@ -78,6 +80,12 @@ const TaskList = ({
               color="#123456"
               cursor="pointer"
               onClick={() => deleteTask(id)}
+            />
+            <AiOutlineCheck
+              size={30}
+              color="#123456"
+              cursor="pointer"
+              onClick={() => handleCompleteTask(id)}
             />
           </IconsWrapper>
         </StyledListItem>

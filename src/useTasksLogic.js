@@ -30,6 +30,10 @@ const useTasksLogic = () => {
   const editTask = (id) => {
     const editedTasks = tasks.map((task) => {
       if (task.id === id) {
+        if (task.completed) {
+          alert("Cannot edit completed tasks!");
+          return task;
+        }
         return { ...task, editing: !task.editing };
       }
       return task;
@@ -50,6 +54,16 @@ const useTasksLogic = () => {
     });
     setTasks(updatedTasks);
     setEditedValue("");
+  };
+
+  const handleCompleteTask = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setTasks(newTasks);
   };
 
   const handleInputChange = (e) => setInputValue(e.target.value);
@@ -80,6 +94,7 @@ const useTasksLogic = () => {
     deleteTask,
     editTask,
     updateTask,
+    handleCompleteTask,
   };
 };
 

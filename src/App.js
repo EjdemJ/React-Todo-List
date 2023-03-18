@@ -29,6 +29,7 @@ const App = () => {
     deleteTask,
     editTask,
     updateTask,
+    handleCompleteTask,
   } = Logic();
 
   return (
@@ -48,6 +49,7 @@ const App = () => {
         editedValue={editedValue}
         handleEditValue={handleEditValue}
         updateTask={updateTask}
+        handleCompleteTask={handleCompleteTask}
       />
     </Container>
   );
