@@ -47,7 +47,11 @@ const TaskList = ({
           <Task key={id} completed={completed}>
             {editing ? (
               <EditWrapper>
-                <EditTaskInput value={editedValue} onChange={handleEditValue} />
+                <EditTaskInput
+                  value={editedValue}
+                  onChange={handleEditValue}
+                  placeholder="Edit Task..."
+                />
                 <AiFillCheckSquare
                   size={30}
                   color="#123456"

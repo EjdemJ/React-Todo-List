@@ -13,14 +13,14 @@ const StyledTask = styled(ListItem)(
   `
 );
 
-const Task = ({ completed, editing, id, children }) => {
+const Task = ({ completed, id, children }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <StyledTask completed={completed} editing={editing} id={id}>
+      <StyledTask completed={completed} id={id}>
         {children}
       </StyledTask>
     </motion.div>
