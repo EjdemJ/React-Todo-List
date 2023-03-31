@@ -1,6 +1,6 @@
 import { styled, css, Typography } from "@mui/material";
 
-import Logic from "./useTasksLogic";
+import useLogic from "./useTasksLogic";
 
 import AddTaskForm from "./components/AddTaskForm";
 import TaskList from "./components/TaskList";
@@ -30,7 +30,7 @@ const App = () => {
     editTask,
     updateTask,
     handleCompleteTask,
-  } = Logic();
+  } = useLogic();
 
   return (
     <Container>

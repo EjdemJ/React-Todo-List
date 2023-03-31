@@ -9,7 +9,9 @@ const StyledTask = styled(ListItem)(
     display: flex;
     align-items: center;
     justify-content: space-between;
-    text-decoration: ${completed ? "line-through" : ""};
+    /* text-decoration: ${completed ? "line-through" : ""}; */
+    opacity: ${completed ? ".5" : "1"};
+    transition: opacity 0.3s;
   `
 );
 
