@@ -48,9 +48,9 @@ const useTasksLogic = () => {
       return;
     }
     const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
+      if (task.id === id)
         return { ...task, title: editedValue, editing: !task.editing };
-      }
+
       return task;
     });
     setTasks(updatedTasks);
@@ -63,9 +63,8 @@ const useTasksLogic = () => {
         alert("Cannot complete task while editing!");
         return task;
       }
-      if (task.id === id) {
-        return { ...task, completed: !task.completed };
-      }
+      if (task.id === id) return { ...task, completed: !task.completed };
+
       return task;
     });
     setTasks(newTasks);
